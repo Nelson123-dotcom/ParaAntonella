@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>tu cumpleaños</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background: black;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      text-align: center;
+    }
+    .stars {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 0;
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: floatStars linear infinite;
+    }
+
+    @keyframes floatStars {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-100vh);
+      }
+    }
+
+    .start-btn {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: transparent;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      padding: 15px 30px;
+      font-size: 18px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      z-index: 2;
+    }
+
+    .start-btn:hover {
+      background: #fff;
+      color: black;
+    }
+
+    .mensaje-container {
+      display: none;
+      position: relative;
+      z-index: 1;
+      padding: 50px;
+    }
+
+    .mensaje {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #ffffff0d;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .cuadro-uno {
+      border: 2px solid #00bfff;
+      box-shadow: 0 0 15px #00bfff;
+    }
+
+    .cuadro-dos,
+    .cuadro-tres {
+      border: 2px solid #ff69b4;
+      box-shadow: 0 0 15px #ff69b4;
+    }
+
+    h1 {
+      font-family: 'Lobster', cursive;
+      font-size: 38px;
+      color: #ff69b4;
+      text-shadow: 2px 2px 0 black;
+      margin: 0;
+    }
+
+    .texto {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    /* Botón para ir a segunda sección */
+    #botonSorpresa {
+      max-width: 600px;
+      margin: 20px auto 0;
+      padding: 10px 0;
+      border: 2px solid white;
+      border-radius: 15px;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+      background: transparent;
+      box-shadow: 0 0 12px white;
+      transition: background 0.3s, color 0.3s;
+      user-select: none;
+      display: inline-block;
+      text-align: center;
+      display: none; /* Oculto inicialmente */
+    }
+
+    #botonSorpresa:hover {
+      background: white;
+      color: black;
+    }
+
+    /* Segunda sección con fade-in */
+    #segundaSeccion {
+      display: none;
+      padding: 80px 20px;
+      position: relative;
+      z-index: 1;
+      opacity: 0;
+      transition: opacity 1s ease;
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: left;
+      color: white;
+      font-size: 18px;
+      line-height: 1.4;
+      white-space: pre-line;
+    }
+
+    #segundaSeccion.visible {
+      opacity: 1;
+    }
+
+    #nombreAntonella {
+  font-family: 'Lobster', cursive;
+  font-style: italic;
+  font-weight: 700;
+  color: white;
+  font-size: 34px;
+  text-shadow:
+    0 0 8px #fff,
+    0 0 20px #fff;
+  line-height: 1.1;
+  user-select: none;
+  white-space: pre-line;
+  margin: 0 0 15px 0; /* Aquí bajé de 40px a 15px */
+  max-width: 300px;
+}
+  </style>
+</head>
+<body>
+  <div class="stars" id="stars"></div>
+  <button class="start-btn" onclick="iniciar()">Iniciar ✨</button>
+
+  <div class="mensaje-container" id="mensajes">
+    <div class="mensaje cuadro-uno" id="cuadro1">
+      <h1>Felices 15 años Antonella 💝</h1>
+    </div>
+    <div class="mensaje cuadro-dos" id="cuadro2">
+      <p class="texto" id="texto1">
+        Finalmente tienes 15 años, ojala los hayas difrutado, y yo quisiera recordarte lo importante que eres para muchas personas: para mí, tus hermanas, tus amigas y tus amigos, tus padres… puede que no lo creas, no lo sientas, pero creeme, es la verdad.
+        No eres cualquier chica: eres tú, y desde mi experiencia, no hay nadie que pueda imitar ese, algo, que hace tan especial el poder conocerte. No quiero que lo olvides.<br /><br />
+        🎉 ¡Felices 15 años! 🎁
+      </p>
+    </div>
+    <div class="mensaje cuadro-tres" id="cuadro3">
+      <p class="texto" id="texto2">
+        Que este año te traiga momentos tan bonitos como los que has regalado sin darte cuenta 💫
+      </p>
+    </div>
+    <div id="botonSorpresa" onclick="mostrarSegundaSeccion()">
+      Presiona aquí para una última sorpresa..
+    </div>
+  </div>
+
+  <div id="segundaSeccion">
+    <h1 id="nombreAntonella">Antonella Adely<br>Torres Soto</h1>
+    • Chica de casa 🏠  
+    • Hermana de en medio 🧍‍♀️  
+    • Dueña de Canela 🐶  
+    • Tonera 🍾  
+    • Dueña de una gatita 🐱  
+    • Estudiante del colegio "Modelo" 💙  
+    • Amiga de San Juanitas 💛  
+    • Amiga de Modelistas 💙  
+    • Posiblemente también amiga de Rosinas ❤️  
+    • Y de Acharanistas 🤍❤️  
+    • Risa contagiosa 😄  
+    • Mejor amiga ❤️‍🩹  
+    • Adolescente de ya 15 años 🎉  
+    • Amante de la música 🎶  
+    • Siempre con buena vibra ✨  
+    • Tiene algo que hace que cada persona que la conoce, sepa que es alguien especial 💫
+  </div>
+
+  <script>
+    function iniciar() {
+      document.querySelector('.start-btn').style.display = 'none';
+      crearEstrellas();
+      document.getElementById('mensajes').style.display = 'block';
+
+      // Cuadro 1
+      setTimeout(() => {
+        document.getElementById('cuadro1').style.opacity = 1;
+      }, 0);
+
+      // Cuadro 2
+      setTimeout(() => {
+        document.getElementById('cuadro2').style.opacity = 1;
+        setTimeout(() => {
+          document.getElementById('texto1').style.opacity = 1;
+        }, 1500);
+      }, 3000);
+
+      // Cuadro 3
+      setTimeout(() => {
+        document.getElementById('cuadro3').style.opacity = 1;
+        setTimeout(() => {
+          document.getElementById('texto2').style.opacity = 1;
+        }, 1500);
+      }, 6000);
+
+      // Mostrar botón sorpresa 3 segundos después del cuadro 3
+      setTimeout(() => {
+        document.getElementById('botonSorpresa').style.display = 'inline-block';
+      }, 9000);
+    }
+
+    function crearEstrellas() {
+      const starsContainer = document.getElementById('stars');
+      for (let i = 0; i < 100; i++) {
+        let star = document.createElement('div');
+        star.className = 'star';
+        star.style.left = Math.random() * 100 + 'vw';
+        star.style.top = Math.random() * 100 + 'vh';
+        star.style.animationDuration = (Math.random() * 10 + 10) + 's';
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function mostrarSegundaSeccion() {
+      const mensajes = document.getElementById('mensajes');
+      const segundaSeccion = document.getElementById('segundaSeccion');
+
+      mensajes.style.display = 'none';
+
+      // Deja la segunda sección oculta con opacidad 0 y visible en display block
+      segundaSeccion.style.display = 'block';
+      segundaSeccion.classList.remove('visible');
+
+      // Espera 1 segundo
+      setTimeout(() => {
+        // Añade clase visible para hacer fade-in (opacidad 1)
+        segundaSeccion.classList.add('visible');
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
